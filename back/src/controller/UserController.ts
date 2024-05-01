@@ -9,7 +9,7 @@ export const getUsers = async (_req: Request,
 }
 
 
-export const setAdminUser = async (req: Request,
+export const updateUser = async (req: Request,
                                    res: Response): Promise<Response<typeof User>> => {
     await User.update(
         {

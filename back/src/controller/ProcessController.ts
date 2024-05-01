@@ -55,16 +55,12 @@ export const createProcess = async (req: Request,
 export const deleteProcess = async (req: Request,
                                     res: Response): Promise<Response<typeof Process>> => {
 
-
-
     await Process.destroy({
         where: {
             id: req.params.id
         }
     });
 
-
     return res.json({result: 'Process destroyed with success !'});
-
 
 }
