@@ -8,5 +8,7 @@ const router = Router();
 
 router.get('/user', verifyToken, isAdmin, getUsers);
 
+router.post('/user', verifyToken, isAdmin, getUsers);
+
 
 export default router;
