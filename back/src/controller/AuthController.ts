@@ -1,16 +1,10 @@
 import {Request, Response} from 'express';
 import User from '../database/models/user';
-import {validationResult} from "express-validator";
 import md5 from "md5";
 import jwt from "jsonwebtoken";
 
 export const register = async (req: Request,
                                res: Response): Promise<Response<typeof User>> => {
-
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({errors: errors.array()});
-    }
 
     const [user, created] = await User.findOrCreate({
             where: {email: req.body.email},
@@ -35,10 +29,6 @@ export const register = async (req: Request,
 export const login = async (req: Request,
                             res: Response): Promise<Response<typeof User>> => {
 
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({errors: errors.array()});
-    }
 
     const user = await User.findOne({
         where: {

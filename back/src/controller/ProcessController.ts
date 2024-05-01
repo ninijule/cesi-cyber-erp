@@ -30,10 +30,6 @@ export const getProcess = async (req: Request,
 export const createProcess = async (req: Request,
                                     res: Response): Promise<Response<typeof Process>> => {
 
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({errors: errors.array()});
-    }
 
     const [process, created] = await Process.findOrCreate({
         where: {
@@ -59,10 +55,7 @@ export const createProcess = async (req: Request,
 export const deleteProcess = async (req: Request,
                                     res: Response): Promise<Response<typeof Process>> => {
 
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({errors: errors.array()});
-    }
+
 
     await Process.destroy({
         where: {
