@@ -15,6 +15,18 @@ export const getProcesses = async (req: Request,
     return res.json({result: process});
 }
 
+export const getProcess = async (req: Request,
+                                   res: Response): Promise<Response<typeof Process>> => {
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({errors: errors.array()});
+    }
+
+    const process = await Process.findByPk(req.params.id);
+    return res.json({result: process});
+}
+
 export const createProcess = async (req: Request,
                                     res: Response): Promise<Response<typeof Process>> => {
 
