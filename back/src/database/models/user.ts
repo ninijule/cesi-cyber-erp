@@ -1,4 +1,3 @@
-'use strict';
 import {DataTypes, Model} from 'sequelize';
 import sequelize from '../index';
 
@@ -14,7 +13,6 @@ class User extends Model {
 
 
 export default User.init({
-    id: {type: DataTypes.INTEGER, primaryKey: true},
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     email: DataTypes.STRING,
