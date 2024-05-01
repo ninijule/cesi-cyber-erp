@@ -1,6 +1,6 @@
 import express, {Express, Request, Response} from "express";
 import compression from "compression";
-import router from "./route/auth";
+import router from "./route/index";
 
 
 function createApp(): Express {

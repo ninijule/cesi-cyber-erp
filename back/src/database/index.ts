@@ -1,5 +1,6 @@
 import {Sequelize} from 'sequelize';
 
+//postgres://postgres:mysecretpassword@localhost:5432/cesi_development
 
 const sequelize = new Sequelize('postgres://postgres:mysecretpassword@localhost:5432/cesi_development');
 

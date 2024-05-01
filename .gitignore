@@ -1,3 +1,4 @@
 back/node_modules/
-/.idea/
+.idea/
+.idea/sonarlint/
 back/dist/

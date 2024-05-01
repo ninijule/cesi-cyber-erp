@@ -2,6 +2,7 @@
 import {DataTypes, Model} from 'sequelize';
 import sequelize from '../index';
 
+
 class User extends Model {
     /**
      * Helper method for defining associations.
@@ -11,17 +12,23 @@ class User extends Model {
 
 }
 
+
 export default User.init({
-    firstName: {
-        type: DataTypes.STRING,
-    },
+    id: {type: DataTypes.INTEGER, primaryKey: true},
+    firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     email: DataTypes.STRING,
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    is_admin: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    }
+
 }, {
     sequelize,
     modelName: 'User',
-    tableName: 'Users'
+    tableName: 'user',
+
 });
 
 
