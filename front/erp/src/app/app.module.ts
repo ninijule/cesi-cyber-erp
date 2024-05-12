@@ -6,18 +6,20 @@ import {AppComponent} from './app.component';
 import {AuthModule} from "./auth/auth.module";
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {ToolbarComponent} from "./shared/toolbar/toolbar.component";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        AuthModule,
-        ToolbarComponent
-    ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    AuthModule,
+    ToolbarComponent
+  ],
   providers: [
     provideAnimationsAsync()
   ],
