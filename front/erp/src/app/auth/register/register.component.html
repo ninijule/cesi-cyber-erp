@@ -1,1 +1,12 @@
-<button (click)="onRegister()">s'enregistrer </button>
+<div class="register-component flex vertical">
+<form class="form-user flex align" [formGroup]="userForm">
+
+  <label for="first-name">First Name: </label>
+  <input id="first-name" type="text" formControlName="firstName">
+
+  <label for="last-name">Last Name: </label>
+  <input id="last-name" type="text" formControlName="lastName">
+  <button (click)="onRegister()">s'enregistrer</button>
+
+</form>
+</div>
