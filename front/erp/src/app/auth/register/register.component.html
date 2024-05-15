@@ -1,12 +1,49 @@
 <div class="register-component flex vertical">
-<form class="form-user flex align" [formGroup]="userForm">
 
-  <label for="first-name">First Name: </label>
-  <input id="first-name" type="text" formControlName="firstName">
+  <form class="form-user flex gap-16" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="flex row gap-16">
+      <mat-form-field appearance="fill">
+        <mat-label>First Name</mat-label>
+        <input id="firstName" matInput type="text" formControlName="firstName">
+      </mat-form-field>
 
-  <label for="last-name">Last Name: </label>
-  <input id="last-name" type="text" formControlName="lastName">
-  <button (click)="onRegister()">s'enregistrer</button>
+      <mat-form-field appearance="fill">
+        <mat-label>Last Name</mat-label>
+        <input id="lastName" matInput type="text" formControlName="lastName">
+      </mat-form-field>
+    </div>
 
-</form>
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input id="email" matInput type="email" formControlName="email">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email Confirmation</mat-label>
+      <input id="emailConfirm" matInput type="email" formControlName="emailConfirm">
+    </mat-form-field>
+
+
+    <mat-error *ngIf="emailMismatch">
+      Email confirmation is required and must match the email.
+    </mat-error>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input id="password" matInput type="password" formControlName="password">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Password Confirmation</mat-label>
+      <input id="passwordConfirm" matInput type="password" formControlName="passwordConfirm">
+    </mat-form-field>
+
+    <mat-error *ngIf="passwordMismatch">
+      Password doesn't match.
+    </mat-error>
+
+    <button mat-flat-button color="primary">Sign up</button>
+
+
+  </form>
 </div>
