@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {UserModel} from "../dto/user.model";
 import {environment} from "../../../environments/environment";
@@ -14,7 +14,7 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
-  registerUser(email: string, password: string): Observable<UserModel> {
-    return this.http.post<UserModel>(this.baseUrl + 'registerUser', JSON.stringify({email, password}));
+  registerUser(email: string, password: string, firstName: string, lastName: string): Observable<UserModel> {
+    return this.http.post<UserModel>(this.baseUrl + 'auth/register', {email, password, firstName, lastName});
   }
 }

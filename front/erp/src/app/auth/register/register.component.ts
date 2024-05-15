@@ -54,8 +54,14 @@ export class RegisterComponent {
 
 
   onSubmit(): void {
+    const email = this.userForm.get('email')?.value ?? '';
+    const password = this.userForm.get('password')?.value ?? '';
+    const firstName = this.userForm.get('firstName')?.value ?? '';
+    const lastName = this.userForm.get('lastName')?.value ?? '';
+
+
     if (this.userForm.valid) {
-      this.authService.registerUser('', '').subscribe(response => console.log(response));
+      this.authService.registerUser(email, password, firstName, lastName ).subscribe(response => console.log(response));
     } else {
       this._snackBar.open('Please fill all fields of the form.', '', {
         duration: 1500,

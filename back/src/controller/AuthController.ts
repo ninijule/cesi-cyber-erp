@@ -11,8 +11,8 @@ export const register = async (req: Request,
             defaults: {
                 email: req.body.email,
                 password: md5(req.body.password),
-                firstName: req.body.firstname,
-                lastName: req.body.lastname,
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
                 is_admin: false
             }
         }
