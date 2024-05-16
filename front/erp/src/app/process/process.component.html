@@ -1,1 +1,6 @@
-<p>process works!</p>
+<div *ngFor="let process of processList">
+  <p>{{ process.name }}</p>
+  <p>{{ process.description }}</p>
+  <p>{{ process.price }}</p>
+  <p>{{ process.is_active }}</p>
+</div>

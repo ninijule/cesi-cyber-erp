@@ -4,7 +4,7 @@ import {ProcessComponent} from "./process.component";
 
 const routes: Routes = [
   {
-    path: 'process',
+    path: '',
     component: ProcessComponent
   }
 ];

@@ -12,11 +12,11 @@ export const getProcesses = async (req: Request,
     }
 
     const process = await Process.findAll();
-    return res.json({result: process});
+    return res.json(process);
 }
 
 export const getProcess = async (req: Request,
-                                   res: Response): Promise<Response<typeof Process>> => {
+                                 res: Response): Promise<Response<typeof Process>> => {
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -24,7 +24,7 @@ export const getProcess = async (req: Request,
     }
 
     const process = await Process.findByPk(req.params.id);
-    return res.json({result: process});
+    return res.json({process});
 }
 
 export const createProcess = async (req: Request,

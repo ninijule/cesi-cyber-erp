@@ -2,20 +2,46 @@ import {Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {catchError, Observable, throwError} from 'rxjs';
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private snackBar: MatSnackBar) {
+  constructor(private snackBar: MatSnackBar, private router: Router) {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    return next.handle(request).pipe(catchError(err => {
+    const token = localStorage.getItem('token');
+
+    // Clone the request and add the authorization header
+    const authReq = request.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    return next.handle(authReq).pipe(catchError(err => {
       if (err) {
-        this.snackBar.open(err.error.result, "Dismiss", {
-          duration: 2000,
-        });
+        switch (err.status) {
+          case 403:
+            this.snackBar.open("Please reconnect.", "Dismiss", {
+              duration: 2000,
+            });
+            void this.router.navigate(['/auth/login']);
+            break;
+          case 401:
+            this.snackBar.open("You are not allowed to see this page.", "Dismiss", {
+              duration: 2000,
+            });
+            void this.router.navigate(['/auth/login']);
+            break;
+          default:
+            this.snackBar.open(err.error.result, "Dismiss", {
+              duration: 2000,
+            });
+            break;
+        }
       }
       return throwError(() => err);
     }));
