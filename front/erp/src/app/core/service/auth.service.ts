@@ -4,6 +4,7 @@ import {UserModel} from "../dto/user.model";
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {ResponseModel} from "../dto/response.model";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthService {
 
   protected readonly baseUrl = environment.baseUrlBack;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   registerUser(email: string, password: string, firstName: string, lastName: string): Observable<UserModel> {
@@ -21,6 +22,11 @@ export class AuthService {
 
   loginUser(email: string, password: string): Observable<ResponseModel> {
     return this.http.post<ResponseModel>(this.baseUrl + 'auth/login', {email, password});
+  }
+
+  logoutUser(){
+    localStorage.removeItem('token');
+    void this.router.navigate(['/auth/login']);
   }
 
   setToken(token: string) {
