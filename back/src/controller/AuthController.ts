@@ -19,11 +19,11 @@ export const register = async (req: Request,
     );
 
     if (created) {
-        return res.json({result: 'User created with success ! Please now use these credentials to access at dashboard. '});
+        return res.json({result: 'Success : User created with success ! Please now use these credentials to access at dashboard. '});
     }
 
 
-    return res.status(409).send({result: 'Error user with this email already exist !'})
+    return res.status(409).send({result: 'Error : This email already exist !'})
 }
 
 export const login = async (req: Request,
