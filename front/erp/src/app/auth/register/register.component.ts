@@ -32,12 +32,12 @@ export class RegisterComponent {
 
 
   userForm = new FormGroup({
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    emailConfirm: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
-    passwordConfirm: new FormControl('', [Validators.required]),
+    firstName: new FormControl('aaaaaaaaaaaa', [Validators.required]),
+    lastName: new FormControl('aaaaaaaaaaaa ', [Validators.required]),
+    email: new FormControl('test@test.fr', [Validators.required, Validators.email]),
+    emailConfirm: new FormControl('test@test.fr', [Validators.required, Validators.email]),
+    password: new FormControl('aaaaaaaaaaaa', [Validators.required]),
+    passwordConfirm: new FormControl('aaaaaaaaaaaa', [Validators.required]),
   }, {validators: matchFieldsValidator});
 
   constructor(private authService: AuthService,

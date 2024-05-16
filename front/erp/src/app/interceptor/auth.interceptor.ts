@@ -11,9 +11,9 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(catchError(err => {
-      console.log(err);
+      console.log(err.error.result);
       if(err) {
-        this.snackBar.open(err.message, err.statusText);
+        this.snackBar.open(err.error.result, "Dismiss");
       }
       return throwError(() => err);
     }));
