@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatIcon} from "@angular/material/icon";
 import {MatButton, MatIconButton} from "@angular/material/button";
@@ -20,7 +20,9 @@ import {AuthService} from "../../core/service/auth.service";
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss'
 })
-export class ToolbarComponent {
+export class ToolbarComponent implements OnInit{
+
+  isLogged = false;
 
   constructor(private authService: AuthService) {
   }
@@ -28,6 +30,10 @@ export class ToolbarComponent {
 
   logout(){
     this.authService.logoutUser();
+  }
+
+  ngOnInit(): void {
+    this.isLogged = this.authService.isLogged();
   }
 
 
