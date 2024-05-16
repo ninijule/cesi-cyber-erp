@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {AuthService} from "../../core/service/auth.service";
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Router} from "@angular/router";
 
 
 export const matchFieldsValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
@@ -41,7 +42,8 @@ export class RegisterComponent {
   }, {validators: matchFieldsValidator});
 
   constructor(private authService: AuthService,
-              private _snackBar: MatSnackBar) {
+              private _snackBar: MatSnackBar,
+              private router: Router) {
   }
 
   get emailMismatch(): boolean {
@@ -61,7 +63,12 @@ export class RegisterComponent {
 
 
     if (this.userForm.valid) {
-      this.authService.registerUser(email, password, firstName, lastName ).subscribe(response => console.log(response));
+      this.authService.registerUser(email, password, firstName, lastName).subscribe(response => {
+        this._snackBar.open('Successfully registered user.', '', {
+          duration: 1500,
+        });
+        void this.router.navigate(['/auth/login']);
+      });
     } else {
       this._snackBar.open('Please fill all fields of the form.', '', {
         duration: 1500,
