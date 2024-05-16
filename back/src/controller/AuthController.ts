@@ -42,7 +42,7 @@ export const login = async (req: Request,
             id: user?.get().id, is_admin: user?.get().is_admin
         }, process.env["JWT_PASS_PHRASE"]!);
 
-        return res.json({result: token});
+        return res.json({token: token});
     } else {
         return res.json({result: 'Invalid credentials'});
     }
