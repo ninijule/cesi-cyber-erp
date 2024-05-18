@@ -4,6 +4,7 @@ import {MatIcon} from "@angular/material/icon";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {AuthService} from "../../core/service/auth.service";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-toolbar',
@@ -15,7 +16,8 @@ import {AuthService} from "../../core/service/auth.service";
     MatMenu,
     MatButton,
     MatMenuItem,
-    MatMenuTrigger
+    MatMenuTrigger,
+    RouterLink
   ],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.scss'

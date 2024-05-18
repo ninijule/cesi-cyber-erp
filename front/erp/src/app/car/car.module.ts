@@ -9,6 +9,7 @@ import {CarComponent} from "./car.component";
 import {MatGridList, MatGridTile} from "@angular/material/grid-list";
 import {
   MatCard,
+  MatCardActions,
   MatCardContent,
   MatCardHeader,
   MatCardImage,
@@ -21,7 +22,7 @@ import {DetailCarComponent} from "./detail-car/detail-car.component";
 @NgModule({
   declarations: [CarComponent, DetailCarComponent],
   imports: [
-    CommonModule, CarRoutingModule, ReactiveFormsModule, MatFormField, MatLabel, MatInput, MatButton, MatError, MatGridList, MatGridTile, MatCard, MatCardHeader, MatCardContent, MatCardTitle, MatCardSubtitle, NgOptimizedImage, MatCardImage
+    CommonModule, CarRoutingModule, ReactiveFormsModule, MatFormField, MatLabel, MatInput, MatButton, MatError, MatGridList, MatGridTile, MatCard, MatCardHeader, MatCardContent, MatCardTitle, MatCardSubtitle, NgOptimizedImage, MatCardImage, MatCardActions
   ]
 })
 export class CarModule {

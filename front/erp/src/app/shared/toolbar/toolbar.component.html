@@ -6,7 +6,7 @@
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item>Manage user</button>
-      <button mat-menu-item>Manage Process</button>
+      <button mat-menu-item [routerLink]="['/car']">Manage Cars</button>
       <button mat-menu-item (click)="logout()">Logout</button>
     </mat-menu>
   }
