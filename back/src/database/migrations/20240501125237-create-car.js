@@ -14,6 +14,7 @@ module.exports = {
             description: {type: DataTypes.STRING},
             price: {type: DataTypes.FLOAT},
             is_active: {type: DataTypes.BOOLEAN},
+            img: {type: DataTypes.STRING},
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE

@@ -2,7 +2,7 @@ import {DataTypes, Model} from 'sequelize';
 import sequelize from '../index';
 
 
-class Process extends Model {
+class Car extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -12,17 +12,18 @@ class Process extends Model {
 }
 
 
-export default Process.init({
+export default Car.init({
     id: {type: DataTypes.INTEGER, primaryKey: true},
     name: {type: DataTypes.STRING},
     description: {type: DataTypes.STRING},
+    img: {type: DataTypes.STRING},
     price: {type: DataTypes.FLOAT},
     is_active: {type: DataTypes.BOOLEAN},
 
 }, {
     sequelize,
-    modelName: 'Process',
-    tableName: 'process',
+    modelName: 'Car',
+    tableName: 'car',
 });
 
 

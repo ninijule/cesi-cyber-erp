@@ -1,7 +1,7 @@
 import authRouter from './auth';
-import processRouter from "./process";
+import carRouter from "./car";
 import userRouter from "./user";
 import invoiceRouter from "./invoice";
 
 
-export default [authRouter, processRouter, userRouter, invoiceRouter];
+export default [authRouter, carRouter, userRouter, invoiceRouter];
