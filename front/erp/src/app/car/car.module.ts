@@ -15,10 +15,11 @@ import {
   MatCardSubtitle,
   MatCardTitle
 } from "@angular/material/card";
+import {DetailCarComponent} from "./detail-car/detail-car.component";
 
 
 @NgModule({
-  declarations: [CarComponent],
+  declarations: [CarComponent, DetailCarComponent],
   imports: [
     CommonModule, CarRoutingModule, ReactiveFormsModule, MatFormField, MatLabel, MatInput, MatButton, MatError, MatGridList, MatGridTile, MatCard, MatCardHeader, MatCardContent, MatCardTitle, MatCardSubtitle, NgOptimizedImage, MatCardImage
   ]

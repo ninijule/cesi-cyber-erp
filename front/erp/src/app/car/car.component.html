@@ -2,7 +2,7 @@
 <div>
   <mat-grid-list cols="3" [rowHeight]="'400px'" class="process-grid">
     <mat-grid-tile *ngFor="let car of carList">
-      <mat-card class="process-card">
+      <mat-card class="process-card" [routerLink]="[car.id]">
         <mat-card-header>
           <mat-card-title>{{ car.name }}</mat-card-title>
           <mat-card-subtitle>Price: {{ car.price | currency }}</mat-card-subtitle>

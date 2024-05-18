@@ -19,4 +19,8 @@ export class CarService {
     return this.http.get<CarModel[]>(this.baseUrl + 'car');
   }
 
+  getCar(id: number): Observable<CarModel> {
+    return this.http.get<CarModel>(this.baseUrl + 'car/' + id);
+  }
+
 }

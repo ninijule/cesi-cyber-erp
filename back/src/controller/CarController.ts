@@ -24,7 +24,7 @@ export const getCar = async (req: Request,
     }
 
     const car = await Car.findByPk(req.params.id);
-    return res.json({car});
+    return res.json(car);
 }
 
 export const createCar = async (req: Request,
@@ -44,7 +44,7 @@ export const createCar = async (req: Request,
     });
 
     if (created) {
-        return res.json({result: car});
+        return res.json(car);
     }
 
     return res.status(409).send({result: 'Error a car with this name already exist !'})
