@@ -1,6 +1,20 @@
-<div *ngFor="let process of processList">
-  <p>{{ process.name }}</p>
-  <p>{{ process.description }}</p>
-  <p>{{ process.price }}</p>
-  <p>{{ process.is_active }}</p>
+<h3>List of processes</h3>
+<div>
+  <mat-grid-list cols="3"  [rowHeight]="'250px'" class="process-grid">
+    <mat-grid-tile *ngFor="let process of processList">
+      <mat-card class="process-card">
+        <mat-card-header>
+          <mat-card-title>{{ process.name }}</mat-card-title>
+          <mat-card-subtitle>Price: {{ process.price | currency }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ process.description }}</p>
+          <p>Status: <span [ngClass]="{'active': process.is_active, 'inactive': !process.is_active}">
+            {{ process.is_active ? 'Active' : 'Inactive' }}
+          </span>
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>
