@@ -1,0 +1,20 @@
+<h3>List of cars</h3>
+<div>
+  <mat-grid-list cols="3" [rowHeight]="'400px'" class="process-grid">
+    <mat-grid-tile *ngFor="let car of carList">
+      <mat-card class="process-card">
+        <mat-card-header>
+          <mat-card-title>{{ car.name }}</mat-card-title>
+          <mat-card-subtitle>Price: {{ car.price | currency }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ car.description }}</p>
+          <p>Status: <span [ngClass]="{'active': car.is_active, 'inactive': !car.is_active}">
+            {{ car.is_active ? 'Active' : 'Inactive' }}
+          </span>
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

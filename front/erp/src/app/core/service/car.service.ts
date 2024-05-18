@@ -2,12 +2,12 @@ import {Injectable} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {ProcessModel} from "../dto/process.model";
+import {CarModel} from "../dto/car.model";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProcessService {
+export class CarService {
 
   protected readonly baseUrl = environment.baseUrlBack;
 
@@ -15,8 +15,8 @@ export class ProcessService {
   }
 
 
-  getProcess(): Observable<ProcessModel[]> {
-    return this.http.get<ProcessModel[]>(this.baseUrl + 'process');
+  getCars(): Observable<CarModel[]> {
+    return this.http.get<CarModel[]>(this.baseUrl + 'car');
   }
 
 }

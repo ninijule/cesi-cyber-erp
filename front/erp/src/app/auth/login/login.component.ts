@@ -28,7 +28,7 @@ export class LoginComponent {
     if (this.userForm.valid) {
       this.authService.loginUser(email, password).subscribe(response => {
         this.authService.setToken(response.token);
-        void this.router.navigate(['/process']);
+        void this.router.navigate(['/car']);
       });
     }
   }
