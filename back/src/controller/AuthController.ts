@@ -40,7 +40,7 @@ export const login = async (req: Request,
     if (user !== null) {
         const token = jwt.sign({
             id: user?.get().id, is_admin: user?.get().is_admin
-        }, process.env["JWT_PASS_PHRASE"]!);
+        }, process.env["JWT_PASS_PHRASE"]!, {expiresIn: '120m'});
 
         return res.json({token: token});
     } else {
