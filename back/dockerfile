@@ -2,14 +2,30 @@ FROM node:alpine AS build
 
 WORKDIR /app
 
-COPY /back/package*.json ./
+COPY back/package*.json ./back/
 
-RUN npm install
+RUN cd back && npm install
 
 COPY . .
 
 RUN cd /app/back/ && npm run build
 
+# Use a lightweight image for the final stage
+FROM node:alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy the build output and necessary files from the build stage
+COPY --from=build /app/back/dist /app/back/dist
+COPY --from=build /app/back/package*.json /app/back/
+COPY --from=build /app/back/.env /app/back/
+
+# Install only production dependencies
+RUN cd /app/back/ && npm install --only=production
+
+# Expose the application port
 EXPOSE 8080
 
+# Start the application
 CMD ["node", "/app/back/dist/main.js"]

@@ -1,6 +1,26 @@
 version: '3.8'
 
 services:
+
+  erp-database:
+    image: postgres:16
+    container_name: erp-database
+    ports:
+      - "5432:5432"
+    volumes:
+      - ~/apps/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=cesi
+    networks:
+      - webnet
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   erp-front:
     container_name: erp-front
     build:
@@ -19,6 +39,8 @@ services:
 
   erp-back:
     container_name: erp-back
+    env_file:
+      - /back/.env
     build:
       context: .
       dockerfile: /back/dockerfile
@@ -26,22 +48,9 @@ services:
       - "8080:8080"
     networks:
       - webnet
-
-
-  erp-database:
-    image: postgres:16
-    container_name: erp-database
-    ports:
-      - "5432:5432"
-    volumes:
-      - ~/apps/postgres:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_PASSWORD=mysecretpassword
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=cesi
-    networks:
-      - webnet
-
+    depends_on:
+      erp-database:
+        condition: service_healthy
 
 networks:
   webnet:
