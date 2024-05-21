@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   erp-front:
+    container_name: erp-front
     build:
       context: .
       dockerfile: /front/erp/dockerfile
@@ -17,6 +18,7 @@ services:
 
 
   erp-back:
+    container_name: erp-back
     build:
       context: .
       dockerfile: /back/dockerfile
