@@ -8,7 +8,7 @@ configDotenv({path: path.resolve(__dirname, '../.env')});
 
 
 
-main();
+void main();
 
 
 

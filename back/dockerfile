@@ -1,0 +1,15 @@
+FROM node:alpine AS build
+
+WORKDIR /app
+
+COPY /back/package*.json ./
+
+RUN npm install
+
+COPY . .
+
+RUN cd /app/back/ && npm run build
+
+EXPOSE 8080
+
+CMD ["node", "/app/back/dist/main.js"]

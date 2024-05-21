@@ -15,6 +15,32 @@ services:
     security_opt:
       - no-new-privileges:true # Empêche l'élévation des privilèges
 
+
+  erp-back:
+    build:
+      context: .
+      dockerfile: /back/dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - webnet
+
+
+  erp-database:
+    image: postgres:16
+    container_name: erp-database
+    ports:
+      - "5432:5432"
+    volumes:
+      - ~/apps/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=cesi
+    networks:
+      - webnet
+
+
 networks:
   webnet:
     driver: bridge
