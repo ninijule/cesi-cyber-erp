@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  erp-front:
+    build:
+      context: .
+      dockerfile: /front/erp/dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro # Lecture seule pour le fichier de configuration
+    networks:
+      - webnet
+    restart: always # Redémarre toujours le conteneur en cas de crash
+    security_opt:
+      - no-new-privileges:true # Empêche l'élévation des privilèges
+
+networks:
+  webnet:
+    driver: bridge

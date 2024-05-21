@@ -1,0 +1,44 @@
+# Phase de construction
+FROM node:18-alpine AS build
+
+WORKDIR /app
+
+COPY /front/erp/package*.json ./
+
+# Installe uniquement les dépendances de production
+RUN npm install -g @angular/cli \
+    && npm ci --only=production
+
+COPY . .
+
+RUN cd front/erp && ng build
+
+# Phase de déploiement
+FROM nginx:1.26-alpine
+
+# Copie du fichier de configuration Nginx personnalisé
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Copie des fichiers construits dans l'image Nginx
+COPY --from=build /app/front/erp/dist/erp/ /usr/share/nginx/html
+
+# Expose le port 80
+EXPOSE 80
+
+
+# Création d'un utilisateur non privilégié
+RUN adduser -D webApp
+
+# Changer les permissions des fichiers pour l'utilisateur non privilégié
+RUN chown -R webApp:webApp /usr/share/nginx/html
+
+# Passer à un utilisateur non privilégié
+USER webApp
+
+
+CMD ["nginx", "-g", "daemon off;"]
+
+USER root
+
+RUN chown -R webApp:webApp /var/cache/nginx/
+
