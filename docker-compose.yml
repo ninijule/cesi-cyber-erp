@@ -5,7 +5,7 @@ services:
     container_name: erp-front
     build:
       context: .
-      dockerfile: /front/erp/dockerfile
+      dockerfile: /front/dockerfile
     ports:
       - "80:80"
     volumes:
