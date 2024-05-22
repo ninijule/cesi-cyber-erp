@@ -11,6 +11,11 @@ export async function initDb() {
     } catch (error) {
         console.error('Unable to connect to the database:', error);
     }
+    try {
+        await sequelize.sync();
+    } catch (error) {
+        console.error('Unable to sync sequelize :', error);
+    }
     return sequelize;
 }
 

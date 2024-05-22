@@ -48,6 +48,7 @@ services:
       - "8080:8080"
     networks:
       - webnet
+    restart: always # Redémarre toujours le conteneur en cas de crash
     depends_on:
       erp-database:
         condition: service_healthy
