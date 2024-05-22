@@ -17,9 +17,9 @@ services:
       - webnet
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres" ]
-      interval: 10s
+      interval: 2s
       timeout: 5s
-      retries: 5
+      retries: 8
 
   erp-front:
     container_name: erp-front
@@ -39,6 +39,12 @@ services:
 
   erp-back:
     container_name: erp-back
+    environment:
+      - NODE_ENV=production
+      - DB_IP=erp-database
+      - DB_USER=postgres
+      - DB_PASSWORD=mysecretpassword
+      - DB_DATABASE_NAME=cesi
     env_file:
       - /back/.env
     build:
