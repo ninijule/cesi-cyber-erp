@@ -19,7 +19,7 @@ WORKDIR /app
 # Copy the build output and necessary files from the build stage
 COPY --from=build /app/back/dist /app/back/dist
 COPY --from=build /app/back/package*.json /app/back/
-COPY --from=build /app/back/.env /app/back/
+COPY --from=build /app/back/.env.production /app/back/
 
 # Install only production dependencies
 RUN cd /app/back/ && npm install --only=production

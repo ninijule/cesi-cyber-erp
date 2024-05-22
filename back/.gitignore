@@ -1,0 +1,5 @@
+.env
+.env.*
+.env.production
+back/node_modules/
+back/dist/

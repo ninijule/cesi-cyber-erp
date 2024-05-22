@@ -1,7 +1,6 @@
 import {Sequelize} from 'sequelize';
 
-
-const sequelize = new Sequelize('postgres://postgres:mysecretpassword@erp-database:5432/cesi');
+const sequelize = new Sequelize('postgres://' + process.env["DB_USER"] + ':' + process.env["DB_PASSWORD"] + '@' + process.env["DB_IP"] + ':5432/' + process.env["DB_DATABASE_NAME"]);
 
 export async function initDb() {
 
