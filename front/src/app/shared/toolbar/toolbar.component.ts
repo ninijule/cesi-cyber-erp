@@ -35,7 +35,11 @@ export class ToolbarComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.isLogged = this.authService.isLogged();
+    this.authService.isLogged.subscribe(
+      (status: boolean) => {
+        this.isLogged = status;
+      }
+    );
   }
 
 
