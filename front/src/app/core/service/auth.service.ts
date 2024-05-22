@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
-import {UserModel} from "../dto/user.model";
+import {FormUserModel} from "../dto/form-user.model";
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {ResponseModel} from "../dto/response.model";
@@ -19,8 +19,8 @@ export class AuthService {
 
   }
 
-  registerUser(email: string, password: string, firstName: string, lastName: string): Observable<UserModel> {
-    return this.http.post<UserModel>(this.baseUrl + 'auth/register', {email, password, firstName, lastName});
+  registerUser(email: string, password: string, firstName: string, lastName: string): Observable<FormUserModel> {
+    return this.http.post<FormUserModel>(this.baseUrl + 'auth/register', {email, password, firstName, lastName});
   }
 
   loginUser(email: string, password: string): Observable<ResponseModel> {

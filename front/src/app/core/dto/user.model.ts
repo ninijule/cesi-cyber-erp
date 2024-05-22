@@ -1,7 +1,9 @@
-export interface UserModel {
-  email: string;
-  password: string;
+export interface UserModel{
+  id: number;
   firstName: string;
   lastName: string;
-  token: string;
+  email: string;
+  is_admin: boolean;
+  createdAt: string;
+  updatedAt: string;
 }

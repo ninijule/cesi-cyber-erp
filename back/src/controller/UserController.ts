@@ -4,8 +4,12 @@ import User from '../database/models/user';
 export const getUsers = async (_req: Request,
                                res: Response): Promise<Response<typeof User>> => {
 
-    const user = await User.findAll();
-    return res.json({result: user});
+    const user = await User.findAll({
+        attributes: {
+            exclude: ['password'],
+        },
+    });
+    return res.json(user);
 }
 
 
