@@ -14,6 +14,8 @@ import {
   MatTable
 } from "@angular/material/table";
 import {UserRoutingModule} from "./user-routing.module";
+import {MatButton} from "@angular/material/button";
+import {MatIcon} from "@angular/material/icon";
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import {UserRoutingModule} from "./user-routing.module";
     MatHeaderRow,
     MatHeaderRowDef,
     MatRow,
-    MatRowDef
+    MatRowDef,
+    MatButton,
+    MatIcon
   ]
 })
 export class UserModule { }

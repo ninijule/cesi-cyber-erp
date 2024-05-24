@@ -34,7 +34,7 @@ export class AuthInterceptor implements HttpInterceptor {
             this.snackBar.open("You are not allowed to see this page.", "Dismiss", {
               duration: 2000,
             });
-            void this.router.navigate(['/auth/login']);
+            void this.router.navigate(['/car']);
             break;
           default:
             this.snackBar.open(err.error.result, "Dismiss", {

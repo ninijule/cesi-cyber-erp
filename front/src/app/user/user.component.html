@@ -1,34 +1,42 @@
-<table mat-table [dataSource]="usersList" class="mat-elevation-z8 demo-table">
+<table mat-table [dataSource]="usersList" class="mat-elevation-z8 table-user" >
 
   <caption>List of Users</caption>
-  <!-- Position Column -->
+
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>Id.</th>
-    <td mat-cell *matCellDef="let element">{{element.id}}</td>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
   </ng-container>
 
   <ng-container matColumnDef="email">
     <th mat-header-cell *matHeaderCellDef>Email</th>
-    <td mat-cell *matCellDef="let element">{{element.email}}</td>
+    <td mat-cell *matCellDef="let element">{{ element.email }}</td>
   </ng-container>
 
-  <!-- Name Column -->
+
   <ng-container matColumnDef="firstName">
     <th mat-header-cell *matHeaderCellDef>firstName</th>
-    <td mat-cell *matCellDef="let element">{{element.firstName}}</td>
+    <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
   </ng-container>
 
 
-  <!-- Weight Column -->
   <ng-container matColumnDef="lastName">
     <th mat-header-cell *matHeaderCellDef>lastName</th>
-    <td mat-cell *matCellDef="let element">{{element.lastName}}</td>
+    <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
   </ng-container>
 
-  <!-- Symbol Column -->
+
   <ng-container matColumnDef="is_admin">
     <th mat-header-cell *matHeaderCellDef>is_admin</th>
-    <td mat-cell *matCellDef="let element">{{element.is_admin}}</td>
+    <td mat-cell *matCellDef="let element">{{ element.is_admin }}</td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef>Delete User</th>
+    <mat-cell *matCellDef="let row" class="flex ">
+      <button mat-raised-button color="primary" class="centered-icon-button" (click)="deleteUser(row.id)">
+        <mat-icon fontIcon="delete" class="icons"></mat-icon></button>
+    </mat-cell>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -46,12 +54,3 @@
   </h3>
 </div>
 
-@if (!clickedRows.size) {
-  <div>Clicked rows will be logged here</div>
-}
-
-<ul>
-  @for (clickedRow of clickedRows; track clickedRow) {
-    <li>Clicked on {{clickedRow.email}}</li>
-  }
-</ul>

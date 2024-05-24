@@ -11,7 +11,7 @@ export class UserComponent implements OnInit {
 
   usersList: UserModel[] = [];
 
-  displayedColumns: string[] = ['id' , 'firstName', 'lastName', 'email', 'is_admin'];
+  displayedColumns: string[] = ['id' , 'firstName', 'lastName', 'email', 'is_admin', 'delete'];
 
   clickedRows = new Set<UserModel>();
 
@@ -22,6 +22,10 @@ export class UserComponent implements OnInit {
     this.userService.getUsers().subscribe(reponse => {
       this.usersList = reponse;
     });
+  }
+
+  deleteUser(id :number){
+    this.userService.deleteUser(id).subscribe(response => console.log(response));
   }
 
 }
