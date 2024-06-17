@@ -14,7 +14,7 @@ function createApp(): Express {
 
     const PORT = process.env.PORT;
 
-    app.get("/admin", (_request: Request, response: Response) => {
+    app.get("/git", (_request: Request, response: Response) => {
         response.status(200).send("Nothing here");
     });
 
