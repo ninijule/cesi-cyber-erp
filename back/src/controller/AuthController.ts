@@ -44,6 +44,6 @@ export const login = async (req: Request,
 
         return res.json({token: token});
     } else {
-        return res.json({result: 'Invalid credentials'});
+        return res.status(401).json('Invalid credentials');
     }
 }

@@ -8,7 +8,7 @@ export const isAdmin = async (req: Request,
         if (req.body.user.is_admin) {
             next();
         }else{
-            return res.sendStatus(401);
+            return res.status(403).json('Only admin are allowed to see this page.');
         }
 
     }

@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../core/service/auth.service";
 import {Router} from "@angular/router";
+import {catchError, EMPTY} from "rxjs";
 
 
 @Component({
@@ -26,7 +27,9 @@ export class LoginComponent {
 
 
     if (this.userForm.valid) {
-      this.authService.loginUser(email, password).subscribe(response => {
+      this.authService.loginUser(email, password).pipe(catchError(() => {
+        return EMPTY;
+      })).subscribe(response => {
         this.authService.setToken(response.token);
         void this.router.navigate(['/car']);
       });

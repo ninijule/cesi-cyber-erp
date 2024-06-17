@@ -25,16 +25,15 @@ export class AuthInterceptor implements HttpInterceptor {
       if (err) {
         switch (err.status) {
           case 403:
-            this.snackBar.open("Please reconnect.", "Dismiss", {
+            this.snackBar.open(err.error ? err.error : "You need more permissions.", "Dismiss", {
               duration: 2000,
             });
-            void this.router.navigate(['/auth/login']);
+            void this.router.navigate([ token ? '/car' : '/auth/login']);
             break;
           case 401:
-            this.snackBar.open("You are not allowed to see this page.", "Dismiss", {
+            this.snackBar.open(err.error ? err.error : "You are not allowed to see this page.", "Dismiss", {
               duration: 2000,
             });
-            void this.router.navigate(['/car']);
             break;
           default:
             this.snackBar.open(err.error.result, "Dismiss", {
