@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 export const register = async (req: Request,
                                res: Response): Promise<Response<typeof User>> => {
 
-    const [user, created] = await User.findOrCreate({
+    const [user] = await User.findOrCreate({
             where: {email: req.body.email},
             defaults: {
                 email: req.body.email,
@@ -18,8 +18,8 @@ export const register = async (req: Request,
         }
     );
 
-    if (created) {
-        return res.json({result: 'Success : User created with success ! Please now use these credentials to access at dashboard. '});
+    if (user) {
+        return res.json('User created with success ! Please now use these credentials to access the dashboard. ');
     }
 
 

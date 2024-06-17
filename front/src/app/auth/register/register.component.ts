@@ -64,8 +64,8 @@ export class RegisterComponent {
 
     if (this.userForm.valid) {
       this.authService.registerUser(email, password, firstName, lastName).subscribe(response => {
-        this._snackBar.open('Successfully registered user.', '', {
-          duration: 1500,
+        this._snackBar.open(response, '', {
+          duration: 2000,
         });
         void this.router.navigate(['/auth/login']);
       });
