@@ -5,25 +5,31 @@ import jwt from "jsonwebtoken";
 
 export const register = async (req: Request,
                                res: Response): Promise<Response<typeof User>> => {
+    try {
 
-    const [user] = await User.findOrCreate({
-            where: {email: req.body.email},
-            defaults: {
-                email: req.body.email,
-                password: md5(req.body.password),
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
-                is_admin: false
+        const [user, created] = await User.findOrCreate({
+                where: {email: req.body.email},
+                defaults: {
+                    email: req.body.email,
+                    password: md5(req.body.password),
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
+                    is_admin: false
+                }
             }
+        );
+
+        if (created && user) {
+            return res.status(201).json('User created with success ! Please now use these credentials to access the dashboard. ');
         }
-    );
 
-    if (user) {
-        return res.json('User created with success ! Please now use these credentials to access the dashboard. ');
+
+        return res.status(409).send({result: 'Error : This email already exist !'})
+
+    } catch (error) {
+        return res.status(500).send({result: 'Internal server error during user registration !'})
+
     }
-
-
-    return res.status(409).send({result: 'Error : This email already exist !'})
 }
 
 export const login = async (req: Request,
