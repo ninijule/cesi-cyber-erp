@@ -9,6 +9,15 @@
       <button mat-menu-item [routerLink]="['/car']">Manage Cars</button>
       <button mat-menu-item (click)="logout()">Logout</button>
     </mat-menu>
+  } @else {
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item [routerLink]="['/']">Home</button>
+      <button mat-menu-item [routerLink]="['/auth/login']">Sign In</button>
+      <button mat-menu-item [routerLink]="['/auth/register']">Sign Up</button>
+    </mat-menu>
   }
 
   <h1 i18n="User welcome|An introduction header for this sample@@introductionHeader">
