@@ -15,7 +15,11 @@ class User extends Model {
 export default User.init({
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
-    email: DataTypes.STRING,
+    email: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false,
+    },
     password: DataTypes.STRING,
     is_admin: {
         type: DataTypes.BOOLEAN,

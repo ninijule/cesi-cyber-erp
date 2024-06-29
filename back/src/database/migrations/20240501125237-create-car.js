@@ -16,11 +16,7 @@ module.exports = {
             is_active: {type: DataTypes.BOOLEAN},
             img: {type: DataTypes.STRING},
             createdAt: {
-                allowNull: false,
-                type: Sequelize.DATE
-            },
-            updatedAt: {
-                allowNull: false,
+                allowNull: true,
                 type: Sequelize.DATE
             }
         });

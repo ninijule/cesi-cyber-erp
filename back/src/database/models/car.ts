@@ -13,7 +13,7 @@ class Car extends Model {
 
 
 export default Car.init({
-    id: {type: DataTypes.INTEGER, primaryKey: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING},
     description: {type: DataTypes.STRING},
     img: {type: DataTypes.STRING},
@@ -24,6 +24,8 @@ export default Car.init({
     sequelize,
     modelName: 'Car',
     tableName: 'car',
+    updatedAt: false,
+    createdAt: true
 });
 
 
