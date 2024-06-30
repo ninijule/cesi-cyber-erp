@@ -1,5 +1,5 @@
 .env
 .env.*
 .env.production
-back/node_modules/
+node_modules/*
 back/dist/
