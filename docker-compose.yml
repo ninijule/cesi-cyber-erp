@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 
 services:
 
@@ -23,6 +23,7 @@ services:
 
   erp-front:
     container_name: erp-front
+    image: cesi-erp-front-end:latest
     build:
       context: .
       dockerfile: /front/dockerfile
@@ -38,6 +39,7 @@ services:
 
 
   erp-back:
+    image: cesi-erp-back-end:latest
     container_name: erp-back
     environment:
       - NODE_ENV=production
