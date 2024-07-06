@@ -4,4 +4,16 @@
   left: 50%;
   transform: translate(-50%,-50%);
 }
+.login-title {
+  color: white;
+}
 
+.login-container {
+  background: url('/assets/img/cesi.jpg') no-repeat center center/cover;
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
