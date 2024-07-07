@@ -1,25 +1,23 @@
 <div class="login-container">
 
-<div class="login-component flex vertical">
+  <div class="login-component flex vertical">
 
-  <div class="login-title flex vertical">
-    <h1>Welcome to CESI ERP</h1>
-    <h2>Sign In</h2>
+    <div class="login-title flex vertical">
+      <h1>Welcome to CESI ERP</h1>
+      <h2>Sign In</h2>
+    </div>
+    <form class="form-user flex gap-16" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input id="email" matInput type="email" formControlName="email">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input id="password" matInput type="password" formControlName="password">
+      </mat-form-field>
+
+      <button mat-flat-button color="primary">Sign in</button>
+    </form>
   </div>
-  <form class="form-user flex gap-16" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="fill">
-      <mat-label>Email</mat-label>
-      <input id="email" matInput type="email" formControlName="email">
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Password</mat-label>
-      <input id="password" matInput type="password" formControlName="password">
-    </mat-form-field>
-
-    <button mat-flat-button color="primary">Sign in</button>
-
-
-  </form>
-</div>
 </div>

@@ -26,7 +26,7 @@ services:
     image: cesi-erp-front-end:latest
     build:
       context: .
-      dockerfile: /front/dockerfile
+      dockerfile: ./front/dockerfile
     ports:
       - "80:80"
     volumes:
@@ -48,10 +48,10 @@ services:
       - DB_PASSWORD=mysecretpassword
       - DB_DATABASE_NAME=cesi
     env_file:
-      - /back/.env
+      - ./back/.env
     build:
       context: .
-      dockerfile: /back/dockerfile
+      dockerfile: ./back/dockerfile
     ports:
       - "8080:8080"
     networks:
