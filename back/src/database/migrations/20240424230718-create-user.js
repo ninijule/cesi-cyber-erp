@@ -27,6 +27,9 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false
       },
+      salary: {
+        type: Sequelize.FLOAT
+      },
       createdAt: {
         allowNull: true,
         type: Sequelize.DATE
