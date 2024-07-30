@@ -6,7 +6,6 @@ const logger = winston.createLogger({
         winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
         winston.format.json(),
     ),
-    defaultMeta: { path: 'root' },
     transports: [
         new winston.transports.File({
             filename: 'logs/error.log',
