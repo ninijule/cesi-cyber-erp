@@ -15,12 +15,13 @@ function createApp(): Express {
     app.use((req: Request, _res: Response, next: NextFunction) => {
         let ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
         let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+        let userAgent = req.headers['user-agent'];
 
         const token = req.headers['authorization'];
         const tokenParts = token?.split(' ');
         const bearerToken = tokenParts?.[1];
 
-        logger.info("IP : " + ip +  " || URL : " + fullUrl + " || Http Verb : " + req.method +  " || Token : " +  bearerToken);
+        logger.info("IP : " + ip +  " || URL : " + fullUrl + " || Http Verb : " + req.method +  " || Token : " +  bearerToken + " || User-Agent : " + userAgent);
        next();
     });
 
