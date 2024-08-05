@@ -23,7 +23,7 @@ export default Car.init({
 }, {
     sequelize,
     modelName: 'Car',
-    tableName: 'car',
+    tableName: 'cars',
     updatedAt: false,
     createdAt: true
 });
