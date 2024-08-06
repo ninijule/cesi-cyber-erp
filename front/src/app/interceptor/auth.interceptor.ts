@@ -34,6 +34,7 @@ export class AuthInterceptor implements HttpInterceptor {
             this.snackBar.open(err.error ? err.error : "You are not allowed to see this page.", "Dismiss", {
               duration: 2000,
             });
+            void this.router.navigate([err.error == 'JWT expired' ? '/auth/login' : '/home']);
             break;
           default:
             this.snackBar.open(err.error.result, "Dismiss", {
