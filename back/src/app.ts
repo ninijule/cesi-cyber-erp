@@ -12,7 +12,7 @@ function createApp(): Express {
     app.use(express.json());
     app.use(cors());
 
-    app.use((req: Request, _res: Response, next: NextFunction) => {
+    app.use((req: Request, res: Response, next: NextFunction) => {
         let ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
         let fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
         let userAgent = req.headers['user-agent'];
@@ -21,8 +21,15 @@ function createApp(): Express {
         const tokenParts = token?.split(' ');
         const bearerToken = tokenParts?.[1];
 
-        logger.info("IP : " + ip +  " || URL : " + fullUrl + " || Http Verb : " + req.method +  " || Token : " +  bearerToken + " || User-Agent : " + userAgent);
-       next();
+        logger.info({
+            IP: ip,
+            URL: fullUrl,
+            'Http Verb': req.method,
+            'Http statut code : ': res.statusCode,
+            Token: bearerToken,
+            'User-Agent': userAgent
+        });
+        next();
     });
 
 
@@ -35,7 +42,7 @@ function createApp(): Express {
     app.use(router);
 
     app.listen(PORT, () => {
-        logger.info("Server running at PORT: " +  PORT);
+        logger.info("Server running at PORT: " + PORT);
     }).on("error", (error) => {
         // gracefully handle error
         logger.error(error);

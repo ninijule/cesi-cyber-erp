@@ -21,29 +21,33 @@ export class AuthInterceptor implements HttpInterceptor {
       }
     });
 
-    return next.handle(authReq).pipe(catchError(err => {
-      if (err) {
-        switch (err.status) {
-          case 403:
-            this.snackBar.open(err.error ? err.error : "You need more permissions.", "Dismiss", {
-              duration: 2000,
-            });
-            void this.router.navigate([ token ? '/car' : '/auth/login']);
-            break;
-          case 401:
-            this.snackBar.open(err.error ? err.error : "You are not allowed to see this page.", "Dismiss", {
-              duration: 2000,
-            });
-            void this.router.navigate([err.error == 'JWT expired' ? '/auth/login' : '/home']);
-            break;
-          default:
-            this.snackBar.open(err.error.result, "Dismiss", {
-              duration: 2000,
-            });
-            break;
+    return next.handle(authReq).pipe(
+      catchError(err => {
+        if (err) {
+          const defaultMessage = "An error occurred.";
+          const message = err.error ? err.error : defaultMessage;
+          const duration = 2000;
+
+          switch (err.status) {
+            case 403:
+              this.snackBar.open(message || "You need more permissions.", "Dismiss", { duration });
+              this.router.navigate([token ? '/car' : '/auth/login']).then();
+              break;
+
+            case 401:
+              this.snackBar.open(message || "You are not allowed to see this page.", "Dismiss", { duration });
+              if (message === 'JWT expired' || message === 'Unauthorized') {
+                this.router.navigate(['/auth/login']).then();
+              }
+              break;
+
+            default:
+              this.snackBar.open(err.error?.result || defaultMessage, "Dismiss", { duration });
+              break;
+          }
         }
-      }
-      return throwError(() => err);
-    }));
+        return throwError(() => err);
+      })
+    );
   }
 }
